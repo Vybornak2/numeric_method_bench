@@ -11,19 +11,27 @@
 * We solve a nonlinear system of 4 coupled first-order ordinary differential equations representing the motion of a satellite under a central gravitational force (with dimensionless parameters $G M = 1$):
 
 * State Vector:
+  
   $$X = [x_1, x_2, x_3, x_4]^T = [x, y, u_x, u_y]^T$$
 
 * System of Equations:
+  
   $$\frac{dx_1}{dt} = x_3$$
+
   $$\frac{dx_2}{dt} = x_4$$
+
   $$\frac{dx_3}{dt} = -\frac{x_1}{(x_1^2 + x_2^2)^{3/2}}$$
+
   $$\frac{dx_4}{dt} = -\frac{x_2}{(x_1^2 + x_2^2)^{3/2}}$$
 
 * Initial Conditions (Elliptical Orbit):
+  
   $$t_{start} = 0, \quad t_{end} = 20, \quad h = 0.01$$
+
   $$x_1(0) = 1.0, \quad x_2(0) = 0.0, \quad x_3(0) = 0.0, \quad x_4(0) = 0.85$$
 
 * Analytical First Integral (Total Mechanical Energy):
+  
   $$E(t) = \frac{1}{2}(x_3^2 + x_4^2) - \frac{1}{\sqrt{x_1^2 + x_2^2}}$$
 
   The exact solution satisfies $\frac{dE}{dt} = 0$, so the total mechanical energy is conserved along the true trajectory.
@@ -35,25 +43,37 @@ Let $r_k = \sqrt{x_{1,k}^2 + x_{2,k}^2}$. We use a constant step size $h$.
 * Explicit Euler (1st order):
 
   $$x_{1,k+1} = x_{1,k} + h\,x_{3,k}$$
+  
   $$x_{2,k+1} = x_{2,k} + h\,x_{4,k}$$
+  
   $$x_{3,k+1} = x_{3,k} - h\,\frac{x_{1,k}}{r_k^3}$$
+  
   $$x_{4,k+1} = x_{4,k} - h\,\frac{x_{2,k}}{r_k^3}$$
 
 * Collatz method (2nd order, RK2):
 
   First, compute the midpoint predictor:
+  
   $$x_{1,k+0.5} = x_{1,k} + \frac{h}{2}x_{3,k}$$
+  
   $$x_{2,k+0.5} = x_{2,k} + \frac{h}{2}x_{4,k}$$
+  
   $$x_{3,k+0.5} = x_{3,k} - \frac{h}{2}\frac{x_{1,k}}{r_k^3}$$
+  
   $$x_{4,k+0.5} = x_{4,k} - \frac{h}{2}\frac{x_{2,k}}{r_k^3}$$
 
   Evaluate the midpoint distance:
+  
   $$r_{k+0.5} = \sqrt{x_{1,k+0.5}^2 + x_{2,k+0.5}^2}$$
 
   Then, perform the full step:
+  
   $$x_{1,k+1} = x_{1,k} + h\,x_{3,k+0.5}$$
+  
   $$x_{2,k+1} = x_{2,k} + h\,x_{4,k+0.5}$$
+  
   $$x_{3,k+1} = x_{3,k} - h\,\frac{x_{1,k+0.5}}{r_{k+0.5}^3}$$
+  
   $$x_{4,k+1} = x_{4,k} - h\,\frac{x_{2,k+0.5}}{r_{k+0.5}^3}$$
 
 * Standard RK4 (4th order):
@@ -62,18 +82,27 @@ Let $r_k = \sqrt{x_{1,k}^2 + x_{2,k}^2}$. We use a constant step size $h$.
   $$F(X) = [x_3, x_4, -x_1/r^3, -x_2/r^3]^T.$$
 
   Then:
+  
   $$K_1 = F(X_k)$$
+  
   $$K_2 = F\left(X_k + \frac{h}{2}K_1\right)$$
+  
   $$K_3 = F\left(X_k + \frac{h}{2}K_2\right)$$
+  
   $$K_4 = F(X_k + hK_3)$$
+  
   $$X_{k+1} = X_k + \frac{h}{6}(K_1 + 2K_2 + 2K_3 + K_4)$$
 
 * Symplectic Euler (1st order):
 
   Forces and velocities are updated first, and the newly computed velocities are immediately used to update positions:
+  
   $$x_{3,k+1} = x_{3,k} - h\,\frac{x_{1,k}}{r_k^3}$$
+  
   $$x_{4,k+1} = x_{4,k} - h\,\frac{x_{2,k}}{r_k^3}$$
+  
   $$x_{1,k+1} = x_{1,k} + h\,x_{3,k+1}$$
+  
   $$x_{2,k+1} = x_{2,k} + h\,x_{4,k+1}$$
 
 ## 4. Program Structure
