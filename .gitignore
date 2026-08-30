@@ -1,0 +1,23 @@
+# Rust build output
+target/
+**/target/
+
+# Python virtual environments
+.venv/
+**/.venv/
+
+# Python cache files
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Local editor and OS files
+.vscode/
+.idea/
+.DS_Store
+
+# Temporary files
+*.tmp
+*.log

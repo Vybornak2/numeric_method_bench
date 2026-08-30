@@ -1,0 +1,22 @@
+[package]
+name = "task1"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "euler"
+path = "src/euler.rs"
+
+[[bin]]
+name = "collatz"
+path = "src/collatz.rs"
+
+[[bin]]
+name = "rk4_double"
+path = "src/rk4_double.rs"
+
+[[bin]]
+name = "rk4_single"
+path = "src/rk4_single.rs"
+
+[dependencies]

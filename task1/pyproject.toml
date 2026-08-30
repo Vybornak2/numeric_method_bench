@@ -1,0 +1,6 @@
+[project]
+name = "task1-analysis"
+version = "0.1.0"
+description = "Numeric method benchmark analysis"
+requires-python = ">=3.13"
+dependencies = ["numpy", "pandas", "matplotlib"]
