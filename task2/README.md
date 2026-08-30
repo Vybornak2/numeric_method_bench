@@ -8,7 +8,7 @@
 
 ## 2. Selected Cauchy Problem (CP)
 
-* We solve a nonlinear system of 4 coupled first-order ordinary differential equations representing the motion of a satellite under a central gravitational force (with dimensionless parameters $G M = 1$):
+* We solve a nonlinear system of 4 coupled first-order ordinary differential equations representing the motion of a satellite under a central gravitational force (with dimensionless parameters $GM = 1$):
 
 * State Vector:
   
@@ -42,13 +42,13 @@ Let $r_k = \sqrt{x_{1,k}^2 + x_{2,k}^2}$. We use a constant step size $h$.
 
 * Explicit Euler (1st order):
 
-  $$x_{1,k+1} = x_{1,k} + h\,x_{3,k}$$
+  $$x_{1,k+1} = x_{1,k} + h x_{3,k}$$
   
-  $$x_{2,k+1} = x_{2,k} + h\,x_{4,k}$$
+  $$x_{2,k+1} = x_{2,k} + h x_{4,k}$$
   
-  $$x_{3,k+1} = x_{3,k} - h\,\frac{x_{1,k}}{r_k^3}$$
+  $$x_{3,k+1} = x_{3,k} - h \frac{x_{1,k}}{r_k^3}$$
   
-  $$x_{4,k+1} = x_{4,k} - h\,\frac{x_{2,k}}{r_k^3}$$
+  $$x_{4,k+1} = x_{4,k} - h \frac{x_{2,k}}{r_k^3}$$
 
 * Collatz method (2nd order, RK2):
 
@@ -68,18 +68,19 @@ Let $r_k = \sqrt{x_{1,k}^2 + x_{2,k}^2}$. We use a constant step size $h$.
 
   Then, perform the full step:
   
-  $$x_{1,k+1} = x_{1,k} + h\,x_{3,k+0.5}$$
+  $$x_{1,k+1} = x_{1,k} + h x_{3,k+0.5}$$
   
-  $$x_{2,k+1} = x_{2,k} + h\,x_{4,k+0.5}$$
+  $$x_{2,k+1} = x_{2,k} + h x_{4,k+0.5}$$
   
-  $$x_{3,k+1} = x_{3,k} - h\,\frac{x_{1,k+0.5}}{r_{k+0.5}^3}$$
+  $$x_{3,k+1} = x_{3,k} - h \frac{x_{1,k+0.5}}{r_{k+0.5}^3}$$
   
-  $$x_{4,k+1} = x_{4,k} - h\,\frac{x_{2,k+0.5}}{r_{k+0.5}^3}$$
+  $$x_{4,k+1} = x_{4,k} - h \frac{x_{2,k+0.5}}{r_{k+0.5}^3}$$
 
 * Standard RK4 (4th order):
 
-  Implemented using the vector state $X = [x_1, x_2, x_3, x_4]^T$ and the derivative function
-  $$F(X) = [x_3, x_4, -x_1/r^3, -x_2/r^3]^T.$$
+  Implemented using the vector state $X = [x_1, x_2, x_3, x_4]^T$ and the derivative function:
+
+  $$F(X) = \left[x_3, x_4, -\frac{x_1}{r^3}, -\frac{x_2}{r^3}\right]^T$$
 
   Then:
   
@@ -97,13 +98,13 @@ Let $r_k = \sqrt{x_{1,k}^2 + x_{2,k}^2}$. We use a constant step size $h$.
 
   Forces and velocities are updated first, and the newly computed velocities are immediately used to update positions:
   
-  $$x_{3,k+1} = x_{3,k} - h\,\frac{x_{1,k}}{r_k^3}$$
+  $$x_{3,k+1} = x_{3,k} - h \frac{x_{1,k}}{r_k^3}$$
   
-  $$x_{4,k+1} = x_{4,k} - h\,\frac{x_{2,k}}{r_k^3}$$
+  $$x_{4,k+1} = x_{4,k} - h \frac{x_{2,k}}{r_k^3}$$
   
-  $$x_{1,k+1} = x_{1,k} + h\,x_{3,k+1}$$
+  $$x_{1,k+1} = x_{1,k} + h x_{3,k+1}$$
   
-  $$x_{2,k+1} = x_{2,k} + h\,x_{4,k+1}$$
+  $$x_{2,k+1} = x_{2,k} + h x_{4,k+1}$$
 
 ## 4. Program Structure
 
