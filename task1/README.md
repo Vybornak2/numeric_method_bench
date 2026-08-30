@@ -84,9 +84,9 @@ For integration with step $h$ we use these recurrence relations derived for our 
 
 * **Method Comparison (`method_comparison.png`):**
   * The slopes of the error curves match the method orders:
-    * **1** for Euler ($\mathcal{O}(h)$)
-    * **2** for Collatz ($\mathcal{O}(h^2)$)
-    * **4** for RK4 ($\mathcal{O}(h^4)$).
+    * **1** for Euler ( $\mathcal{O}(h)$ )
+    * **2** for Collatz ( $\mathcal{O}(h^2)$ )
+    * **4** for RK4 ( $\mathcal{O}(h^4)$ ).
 
   * Higher-order methods achieve higher accuracy with far steps.
 
