@@ -1,0 +1,22 @@
+[package]
+name = "task2"
+version = "0.1.0"
+edition = "2021"
+
+[[bin]]
+name = "euler"
+path = "src/euler.rs"
+
+[[bin]]
+name = "collatz"
+path = "src/collatz.rs"
+
+[[bin]]
+name = "rk4"
+path = "src/rk4.rs"
+
+[[bin]]
+name = "symplectic"
+path = "src/symplectic.rs"
+
+[dependencies]
